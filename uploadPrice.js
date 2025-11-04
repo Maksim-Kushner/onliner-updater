@@ -1,17 +1,13 @@
 import fetch from "node-fetch";
 import fs from "fs";
 import { parse } from "csv-parse/sync";
-import dotenv from "dotenv";
 
-// Загружаем переменные из .env
-dotenv.config();
-
-// === Настройки OAuth2 из .env ===
+// === Настройки OAuth2 из окружения Actions ===
 const CLIENT_ID = process.env.ONLINER_CLIENT_ID;
 const CLIENT_SECRET = process.env.ONLINER_CLIENT_SECRET;
 
 if (!CLIENT_ID || !CLIENT_SECRET) {
-  throw new Error("Не заданы переменные ONLINER_CLIENT_ID или ONLINER_CLIENT_SECRET в .env");
+  throw new Error("Не заданы переменные ONLINER_CLIENT_ID или ONLINER_CLIENT_SECRET в окружении GitHub Actions");
 }
 
 // === 1️⃣ Получаем токен ===
@@ -100,5 +96,4 @@ async function uploadPrice(token, csvData) {
     console.error("Ошибка:", err);
   }
 })();
-
 
