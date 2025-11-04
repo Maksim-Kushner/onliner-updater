@@ -1,0 +1,40 @@
+name: Update Onliner Prices
+
+on:
+  schedule:
+    - cron: "10 0 * * *" # 03:10 Минск = 00:10 UTC
+  workflow_dispatch:
+
+jobs:
+  update-prices:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Download supplier price
+        run: node downloadPrice.js
+
+      - name: Upload prices to Onliner
+        run: node uploadPrice.js
+        env:
+          ONLINER_CLIENT_ID: ${{ secrets.ONLINER_CLIENT_ID }}
+          ONLINER_CLIENT_SECRET: ${{ secrets.ONLINER_CLIENT_SECRET }}
+
