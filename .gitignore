@@ -1,0 +1,18 @@
+# Node modules
+node_modules/
+npm-debug.log
+package-lock.json
+
+# CSV и временные файлы
+supplier-price.csv
+price-ready.csv
+onliner-response-final.csv.txt
+*.bak
+*.tmp
+
+# Секреты и конфиденциальные данные
+.env
+
+# Системные файлы
+.DS_Store
+Thumbs.db
