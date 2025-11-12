@@ -38,7 +38,7 @@ function prepareCsv(resetFilePath, supplierFilePath, outputFilePath) {
   const supplierRecords = parse(supplierCsv, { columns: true, delimiter: ";" });
 
   const priceMap = new Map();
-  supplierRecords.forEach(r => priceMap.set(r.vendor_code, r.price_recommended));
+  supplierRecords.forEach(r => priceMap.set(r.vendor_code, r.price));
 
   const updatedRecords = resetRecords.map(r => {
     const newPrice = priceMap.get(r["Артикул"]);
