@@ -11,8 +11,10 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "chardet": "^2.1.1",
     "csv-parse": "^6.1.0",
     "dotenv": "^17.2.3",
+    "iconv-lite": "^0.7.0",
     "node-fetch": "^3.3.2"
   }
 }
