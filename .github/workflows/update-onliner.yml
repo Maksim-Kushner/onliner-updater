@@ -3,6 +3,7 @@ name: Update Onliner Prices
 on:
   schedule:
     - cron: "10 0 * * *" # 05:10 Минск = 00:10 UTC
+    - cron: "0 13 * * *" # запуск в 16:00 по Минску
   workflow_dispatch:
 
 jobs:
